@@ -62,7 +62,7 @@ impl Board {
                 else {
                     // Cell is currently dead.
                     // It is born if it has exactly three neighbors.
-                    // It dies otherwise.
+                    // It stays dead otherwise.
                     if neighbors == 3 {
                         self.current[y][x] = true;
                     }
@@ -110,6 +110,19 @@ impl Board {
                 row_hash |= if self.current[row*2+1][j] { 1 << (31 - j) } else { 0 };
             }
             hash ^= row_hash;
+        }
+
+        for col in 1..16 {
+            let mut col_hash: u64 = 0;
+            // Load upper row into upper bits
+            for i in 0..32 {
+                col_hash |= if self.current[i][col*2] { 1 << (63 - i) } else { 0 };
+            }
+            // Load lower row into lower bits
+            for j in 0..32 {
+                col_hash |= if self.current[j][col*2+1] { 1 << (31 - j) } else { 0 };
+            }
+            hash ^= col_hash;
         }
 
         hash

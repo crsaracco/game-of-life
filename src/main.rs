@@ -1,6 +1,5 @@
 extern crate piston_window;
 extern crate rand;
-extern crate fps_counter;
 
 use piston_window::*;
 use std::time::{Duration, Instant};
