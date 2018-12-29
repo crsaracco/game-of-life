@@ -1,0 +1,10 @@
+[package]
+name = "gameoflife"
+version = "0.1.0"
+authors = ["Charles Saracco <crsaracco@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+piston_window = "0.85"
+rand = "0.6"
+fps_counter = { git = "https://github.com/PistonDevelopers/fps_counter.git" }
